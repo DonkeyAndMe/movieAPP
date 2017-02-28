@@ -5,10 +5,10 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'eval-source-map', //配置生成Source
-    entry: __dirname + "/app/main.js",
+    entry: __dirname + "/src/js/entry.js",
     output: {
-        path: __dirname + "/public",
-        publicPath: 'http://localhost:8080',
+        path: __dirname + "/dist",
+        // publicPath: 'http://localhost:8080',
         filename: "[name].js"
     },
 
@@ -33,45 +33,12 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: './public',
-        host: 'localhost',
-        port: '8080',
-        hot: true,
-        colors: true, //终端输出结果为彩色。
-        //在开发单页面应用时用处比较大。
-        historyApiFallback: true, //不跳转
+        contentBase: './dist',//查一下这的意思 结果是服务生成文件夹的位置，如果不设置的话它会以当前目录为根目录
+        // host: 'localhost',
+        port: 9090,
+        // hot: true,
+        // colors: true, //终端输出结果为彩色。
+        historyApiFallback: true, //不跳转 在开发单页面应用时用处比较大。
         inline: true //实时刷新
     }
-
-    // module: {
-    //   loaders: [
-    //     {
-    //       test: /\.json$/,
-    //       loader: "json"
-    //     },
-    //     {
-    //       test: /\.js$/,
-    //       exclude: /node_modules/,
-    //       loader: 'babel'
-    //     },
-    //     {
-    //       test: /\.css$/,
-    //       loader: ExtractTextPlugin.extract('style', 'css?modules!postcss')
-    //     }
-    //   ]
-    // },
-    // postcss: [
-    //   require('autoprefixer')
-    // ],
-
-
-    // plugins: [
-    // new webpack.HotModuleReplacementPlugin()//热加载插件
-    //   new HtmlWebpackPlugin({
-    //     template: __dirname + "/app/index.tmpl.html"
-    //   }),
-    //   new webpack.optimize.OccurenceOrderPlugin(),
-    //   new webpack.optimize.UglifyJsPlugin(),
-    //   new ExtractTextPlugin("[name]-[hash].css")
-    // ]
 }
